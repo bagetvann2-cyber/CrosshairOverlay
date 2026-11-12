@@ -10,3 +10,11 @@ dist/
 
 # Старая версия с exe
 _backup_v1/
+
+# Служебное: остаётся на диске, но не в репозитории
+PLAN.md
+*.spec
+make_crosshairs.py
+tests/
+requirements-dev.txt
+release/

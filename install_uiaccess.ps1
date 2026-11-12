@@ -40,9 +40,14 @@ if ($Uninstall) {
 }
 
 # 2. Источник
-$Source = Join-Path $PSScriptRoot 'dist\CrosshairOverlay'
-if (-not (Test-Path (Join-Path $Source 'CrosshairOverlay.exe'))) {
-    Write-Host "Сначала собери exe (не найден $Source\CrosshairOverlay.exe)" -ForegroundColor Red
+# Ищем программу: рядом со скриптом (архив из релиза) или в dist (после сборки из исходников)
+$Source = @(
+    (Join-Path $PSScriptRoot 'CrosshairOverlay'),
+    (Join-Path $PSScriptRoot 'dist\CrosshairOverlay')
+) | Where-Object { Test-Path (Join-Path $_ 'CrosshairOverlay.exe') } | Select-Object -First 1
+if (-not $Source) {
+    Write-Host 'Не найдена папка CrosshairOverlay с программой рядом со скриптом.' -ForegroundColor Red
+    Write-Host 'Распакуй архив целиком или сначала собери exe.' -ForegroundColor Red
     exit 1
 }
 
