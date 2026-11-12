@@ -1,0 +1,12 @@
+# Окружение и кэш
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Сборка PyInstaller
+build/
+dist/
+
+# Старая версия с exe
+_backup_v1/
